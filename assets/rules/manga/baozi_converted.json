@@ -1,0 +1,77 @@
+{
+  "api": "4",
+  "type": "manga",
+  "name": "baozi",
+  "displayName": "包子漫画",
+  "version": "1.1.3",
+  "baseURL": "https://cn.bzmgcn.com",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0",
+  "search": {
+    "searchURL": "/search?q={keyword}",
+    "resultList": "div.comics-card",
+    "itemSelectors": {
+      "id": {
+        "selector": "a",
+        "attr": "href",
+        "regex": "/comic/([^/?#]+)"
+      },
+      "title": {
+        "selector": "h3",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": "a > amp-img",
+        "attr": "src"
+      },
+      "description": {
+        "selector": "small",
+        "attr": "text"
+      }
+    }
+  },
+  "detail": {
+    "detailURL": "/comic/{id}",
+    "selectors": {
+      "title": {
+        "selector": "h1.comics-detail__title",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": "div.l-content amp-img",
+        "attr": "src"
+      },
+      "description": {
+        "selector": "p.comics-detail__desc",
+        "attr": "text"
+      },
+      "tags": {
+        "selector": "div.tag-list > span",
+        "attr": "text"
+      }
+    },
+    "chapters": {
+      "method": "selector",
+      "selector": "div.comics-chapters > a > div > span",
+      "attr": "text",
+      "hrefBase": "https://www.twmanga.com",
+      "reverse": true
+    }
+  },
+  "reader": {
+    "imagesURL": "{chapterId}",
+    "method": "selector",
+    "selector": ".comic-contain > .chapter-img .comic-contain__item",
+    "attr": "data-src",
+    "postProcess": [
+      {
+        "type": "replace",
+        "from": "/w640/",
+        "to": "/"
+      },
+      {
+        "type": "replaceDomain",
+        "to": "as.baozimh.com"
+      }
+    ]
+  }
+}

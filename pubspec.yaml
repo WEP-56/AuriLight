@@ -1,0 +1,108 @@
+name: kazuvera2d
+description: A unified anime and manga application combining Kazumi and Venera
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=3.10.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # State Management
+  mobx: ^2.3.0+1
+  flutter_mobx: ^2.2.0+2
+  get_it: ^7.6.4
+  
+  # Local Storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  
+  # Network
+  dio: ^5.4.0
+  http: ^1.1.0
+  html: ^0.15.4
+  xpath_selector_html_parser: ^3.0.0
+  # rhttp:
+  #   path: ../rhttp-main/rhttp
+  
+  # WebView support for different platforms (Kazumi style)
+  webview_flutter: ^4.4.2
+  webview_flutter_android: ^3.16.0
+  webview_flutter_wkwebview: ^3.13.0
+  flutter_inappwebview_platform_interface: ^1.3.0+1
+  flutter_inappwebview_ios: ^1.1.2
+  flutter_inappwebview_macos: ^1.1.2
+  flutter_inappwebview_android: ^1.1.3
+  webview_windows:
+    git:
+      url: https://github.com/Predidit/flutter-webview-windows.git
+      ref: 9962cb9416f867d9ce9f409ccd6784e78c5f72ca
+  desktop_webview_window:
+    git:
+      url: https://github.com/Predidit/linux_webview_window.git
+      ref: 5a07358
+  
+  # Venera integration dependencies
+  flutter_qjs:
+    path: ../flutter_qjs
+  crypto: ^3.0.6
+  pointycastle: ^4.0.0
+  uuid: ^4.5.1
+  photo_view:
+    path: ../photo_view
+  cached_network_image: ^3.4.1
+  cookie_jar: ^4.0.8
+  dio_cookie_manager: ^3.1.1
+  
+  # Utils
+  path: ^1.8.3
+  path_provider: ^2.1.1
+  file_picker: ^8.0.0+1
+  
+  # Routing
+  flutter_modular: ^6.3.2
+  
+  # Icons
+  cupertino_icons: ^1.0.6
+  
+  # Window management (for custom title bar)
+  window_manager: ^0.4.3
+  
+  # Video Player (Official packages - more stable for development)
+  media_kit: ^1.2.6
+  media_kit_video: ^2.0.1
+  media_kit_libs_video: ^1.0.7
+  
+  # Player UI Components
+  audio_video_progress_bar: ^2.0.2
+  canvas_danmaku: ^0.2.7
+  flutter_volume_controller: ^1.3.2
+  screen_brightness_android: ^2.1.3
+  screen_brightness_ios: ^2.1.2
+  screen_brightness_platform_interface: ^2.1.0
+  wakelock_plus: ^1.2.10
+  
+  # Live streaming core library
+  simple_live_core:
+    path: ../dart_simple_live-master/simple_live_core
+
+dependency_overrides:
+  # Using official packages for stability
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  build_runner: ^2.4.7
+  mobx_codegen: ^2.4.0
+  hive_generator: ^2.0.1
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/rules/anime/
+    - assets/rules/manga/

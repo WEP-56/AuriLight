@@ -1,0 +1,18 @@
+{
+    "deprecated": true,
+    "api": "1",
+    "type": "anime",
+    "name": "1ANI",
+    "version": "1.4",
+    "muliSources": true,
+    "useWebview": true,
+    "useNativePlayer": true,
+    "userAgent": "",
+    "baseURL": "https://anime.d1dm.xyz/",
+    "searchURL": "https://anime.d1dm.xyz/vodsearch/-------------.html?wd=@keyword",
+    "searchList": "//div[@class='module-search-item']",
+    "searchName": "//h3/a",
+    "searchResult": "//h3/a",
+    "chapterRoads": "//div[@class='module-blocklist scroll-box scroll-box-y']",
+    "chapterResult": "//a"
+}

@@ -1,0 +1,73 @@
+{
+    "api": "4",
+    "type": "manga",
+    "name": "wnacg",
+    "displayName": "绅士漫画",
+    "version": "1.0.0",
+    "useWebview": true,
+    "baseURL": "https://www.wnacg.com",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0",
+    "domainRefresh": {
+        "enabled": true,
+        "url": "https://wn01.link/",
+        "selector": "a[href]",
+        "pattern": "^https?:\\/\\/([^\\/]+)",
+        "exclude": ["wn01.link", "google.cn", "cdn-cgi"]
+    },
+    "search": {
+        "searchURL": "/search/?q={keyword}&f=_all&s=create_time_DESC&syn=yes",
+        "pageParam": "&p={page}",
+        "resultList": "div.grid div.gallary_wrap > ul.cc > li",
+        "itemSelectors": {
+            "id": {
+                "selector": "div.pic_box > a",
+                "attr": "href",
+                "regex": "(?<=-aid-)[0-9]+"
+            },
+            "title": {
+                "selector": "div.info > div.title > a",
+                "attr": "text"
+            },
+            "cover": {
+                "selector": "div.pic_box > a > img",
+                "attr": "src",
+                "prefix": "https:",
+                "cdnFallbacks": [
+                    "https://img.wnacg.org",
+                    "https://img2.wnacg.org",
+                    "https://img3.wnacg.org"
+                ]
+            }
+        }
+    },
+    "detail": {
+        "detailURL": "/photos-index-page-1-aid-{id}.html",
+        "selectors": {
+            "title": "div.userwrap > h2",
+            "cover": {
+                "selector": "div.userwrap > div.asTB > div.asTBcell.uwthumb > img",
+                "attr": "src",
+                "prefix": "https:",
+                "cdnFallbacks": [
+                    "https://img.wnacg.org",
+                    "https://img2.wnacg.org",
+                    "https://img3.wnacg.org"
+                ]
+            },
+            "description": "div.asTBcell.uwconn > p",
+            "tags": "a.tagshow"
+        }
+    },
+    "reader": {
+        "imagesURL": "/photos-gallery-aid-{id}.html",
+        "method": "regex",
+        "pattern": "//[^\"]+/[^\"]+\\.[^\"]+",
+        "prefix": "https:",
+        "postProcess": "removeLastChar",
+        "cdnFallbacks": [
+            "https://img.wnacg.org",
+            "https://img2.wnacg.org",
+            "https://img3.wnacg.org"
+        ]
+    }
+}

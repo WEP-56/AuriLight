@@ -1,0 +1,73 @@
+{
+    "api": "4",
+    "type": "manga",
+    "name": "goda",
+    "displayName": "GoDa漫画",
+    "version": "1.0.0",
+    "baseURL": "https://godamh.com",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0",
+    "search": {
+        "searchURL": "/s/{keyword}",
+        "pageParam": "?page={page}",
+        "resultList": ".pb-2",
+        "itemSelectors": {
+            "id": {
+                "selector": "a",
+                "attr": "href"
+            },
+            "title": {
+                "selector": "h3",
+                "attr": "text"
+            },
+            "cover": {
+                "selector": "img",
+                "attr": "src"
+            }
+        }
+    },
+    "detail": {
+        "detailURL": "{id}",
+        "selectors": {
+            "title": {
+                "selector": ".text-xl",
+                "attr": "text"
+            },
+            "cover": {
+                "selector": ".object-cover",
+                "attr": "src"
+            },
+            "description": {
+                "selector": "p.text-medium",
+                "attr": "text"
+            },
+            "tags": {
+                "selector": "div.py-1 a",
+                "attr": "text"
+            }
+        },
+        "chapters": {
+            "method": "json",
+            "mangaId": {
+                "selector": "#mangachapters",
+                "attr": ["data-mid", "data-id"]
+            },
+            "apiURL": "https://api-get-v3.mgsearcher.com/api/manga/get?mid={mid}&mode=all&t={ts}",
+            "resultPath": "data.chapters",
+            "idPath": "id",
+            "titlePath": "attributes.title",
+            "idTemplate": "{mid}@{id}",
+            "headers": {
+                "Referer": "https://godamh.com"
+            }
+        }
+    },
+    "reader": {
+        "imagesURL": "https://api-get-v3.mgsearcher.com/api/chapter/getinfo?m={mangaId}&c={chapterId}",
+        "method": "json",
+        "listPath": "data.info.images.images",
+        "urlTemplate": "https://t40-1-4.g-mh.online{imageName}",
+        "headers": {
+            "Referer": "https://godamh.com"
+        }
+    }
+}

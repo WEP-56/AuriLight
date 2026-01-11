@@ -1,0 +1,59 @@
+name: kazuvera2d
+description: A unified anime and manga application combining Kazumi and Venera
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=3.10.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # State Management
+  mobx: ^2.3.0+1
+  flutter_mobx: ^2.2.0+2
+  provider: ^6.1.1
+  
+  # Local Storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  path_provider: ^2.1.1
+  
+  # Network
+  dio: ^5.4.0
+  
+  # UI Components
+  cached_network_image: ^3.3.0
+  
+  # HTML Parsing
+  html: ^0.15.4
+  
+  # File Management
+  file_picker: ^6.1.1
+  
+  # Window Management
+  window_manager: ^0.3.7
+  
+  # Utils
+  uuid: ^4.2.1
+  intl: ^0.19.0
+  path: ^1.8.3
+  
+  # Routing
+  flutter_modular: ^6.3.2
+  
+  # Icons
+  cupertino_icons: ^1.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  build_runner: ^2.4.7
+  mobx_codegen: ^2.4.0
+  hive_generator: ^2.0.1
+
+flutter:
+  uses-material-design: true

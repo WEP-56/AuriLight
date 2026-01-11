@@ -1,0 +1,85 @@
+{
+  "api": "4",
+  "type": "manga",
+  "name": "mh1234",
+  "displayName": "漫画1234",
+  "version": "1.0.0",
+  "baseURL": "https://b.amh1234.com",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0",
+  "search": {
+    "searchURL": "/search/?keywords={keyword}",
+    "pageParam": "&page={page}",
+    "resultList": ".itemBox",
+    "itemSelectors": {
+      "id": {
+        "selector": "a",
+        "attr": "href",
+        "regex": "/comic/([^./]+)\\.html"
+      },
+      "title": {
+        "selector": ".title",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": "img",
+        "attr": "src"
+      }
+    }
+  },
+  "detail": {
+    "detailURL": "/comic/{id}.html",
+    "selectors": {
+      "title": {
+        "selector": ".BarTit",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": ".pic img",
+        "attr": "src"
+      },
+      "description": {
+        "selector": "#full-des",
+        "attr": "text"
+      },
+      "tags": {
+        "selector": ".sub_r a",
+        "attr": "text"
+      }
+    },
+    "chapters": {
+      "method": "selector",
+      "itemSelector": ".chapter-warp li a",
+      "reverse": true,
+      "id": {
+        "attr": "href",
+        "regex": "/comic/([^/]+)/([^./]+)\\.html",
+        "template": "{g1}_{g2}"
+      },
+      "title": {
+        "selector": "span",
+        "attr": "text"
+      }
+    }
+  },
+  "reader": {
+    "imagesURL": "/comic/{id}/{chapterId}.html",
+    "method": "regexVars",
+    "imagesPattern": "var\\s+chapterImages\\s*=\\s*\\[\\\"(.*?)\\\"\\]",
+    "imagesGroup": 1,
+    "pathPattern": "var\\s+chapterPath\\s*=\\s*\\\"(.*?)\\\"",
+    "pathGroup": 1,
+    "prefix": "https://gmh1234.wszwhg.net/",
+    "postProcess": [
+      {
+        "type": "replace",
+        "from": "\\\\",
+        "to": ""
+      },
+      {
+        "type": "replace",
+        "from": "//",
+        "to": "/"
+      }
+    ]
+  }
+}

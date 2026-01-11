@@ -1,0 +1,86 @@
+{
+  "api": "4",
+  "type": "manga",
+  "name": "baihehui",
+  "displayName": "百合会",
+  "version": "1.0.0",
+  "baseURL": "https://www.yamibo.com",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:114.0) Gecko/20100101 Firefox/114.0",
+  "useWebview": true,
+  "search": {
+    "searchURL": "/search/manga?SearchForm%5Bkeyword%5D={keyword}&page={page}",
+    "resultList": "tr[data-key]",
+    "itemSelectors": {
+      "id": {
+        "selector": "a",
+        "attr": "href",
+        "regex": "/manga/(\\d+)",
+        "padLeft": 3,
+        "padChar": "0"
+      },
+      "title": {
+        "selector": "a",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": "a",
+        "attr": "href",
+        "regex": "/manga/(\\d+)",
+        "padLeft": 3,
+        "padChar": "0",
+        "prefix": "https://www.yamibo.com/coverm/000/000/",
+        "suffix": ".jpg"
+      },
+      "description": {
+        "selector": "td:last-child",
+        "attr": "text",
+        "prefix": "更新于: "
+      }
+    },
+    "headers": {
+      "Referer": "https://www.yamibo.com"
+    }
+  },
+  "detail": {
+    "detailURL": "/manga/{id}",
+    "selectors": {
+      "title": {
+        "selector": "h3.col-md-12",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": "h3.col-md-12",
+        "attr": "text",
+        "prefix": "https://www.yamibo.com/coverm/000/000/",
+        "suffix": "{id}.jpg"
+      },
+      "tags": {
+        "selector": "a.label.label-ntype",
+        "attr": "text"
+      }
+    },
+    "chapters": {
+      "method": "selector",
+      "itemSelector": "div[data-key] a",
+      "id": {
+        "attr": "href",
+        "regex": "id=(\\d+)"
+      },
+      "title": {
+        "attr": "text"
+      }
+    }
+  },
+  "reader": {
+    "imagesURL": "/manga/view-chapter?id={chapterId}&page={page}",
+    "method": "paged",
+    "pageImageSelector": "img#imgPic",
+    "pageImageAttr": "src",
+    "maxPageSelector": "li.last > a",
+    "maxPageAttr": "data-page",
+    "maxPagePlusOne": true,
+    "headers": {
+      "Referer": "https://www.yamibo.com"
+    }
+  }
+}

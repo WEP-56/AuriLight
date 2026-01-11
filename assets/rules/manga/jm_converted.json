@@ -1,0 +1,166 @@
+{
+  "api": "4",
+  "type": "manga",
+  "name": "jm",
+  "displayName": "禁漫天堂",
+  "version": "1.3.2",
+
+  "baseURL": "https://www.cdntwice.org",
+  "userAgent": "Mozilla/5.0 (Linux; Android 10; K; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/130.0.0.0 Mobile Safari/537.36",
+
+  "imageHost": "https://cdn-msp.jmapinodeudzn.net",
+
+  "account": {
+    "type": "jm",
+    "session": "cookie",
+
+    "pkgName": "com.example.app",
+    "jmVersion": "2.0.11",
+    "authKey": "18comicAPPContent",
+    "dataSecret": "185Hcomic3PAPP7R",
+
+    "fallbackServers": [
+      "www.cdntwice.org",
+      "www.cdnhth.club",
+      "www.cdngwc.cc",
+      "www.cdnhth.net",
+      "www.cdnbea.net",
+      "www.cdnsha.org",
+      "www.cdnaspa.cc",
+      "www.cdnntr.cc"
+    ],
+
+    "domainListUrl": "https://rup4a04-c02.tos-cn-hongkong.bytepluses.com/newsvr-2025.txt",
+    "domainSecret": "diosfjckwpqpdfjkvnqQjsik",
+
+    "imageStream": "1",
+
+    "imageHostRefresh": {
+      "method": "encryptedJson",
+      "httpMethod": "GET",
+      "path": "/setting?app_img_shunt={imageStream}?express=",
+      "resultPath": "img_host"
+    },
+
+    "login": {
+      "method": "encryptedJson",
+      "httpMethod": "POST",
+      "path": "/login",
+      "contentType": "application/x-www-form-urlencoded",
+      "bodyTemplate": "username={username}&password={password}"
+    },
+
+    "logout": {
+      "clearCookies": true
+    }
+  },
+
+  "domainRefresh": {
+    "enabled": false,
+    "type": "encryptedText",
+    "url": "https://rup4a04-c02.tos-cn-hongkong.bytepluses.com/newsvr-2025.txt",
+    "decrypt": {
+      "algo": "aes_ecb_pkcs7",
+      "key": {
+        "derive": "md5_hex_utf8",
+        "input": "{domainSecret}"
+      }
+    },
+    "jsonPath": "Server",
+    "take": 4,
+    "fallback": "{account.fallbackServers}"
+  },
+
+  "protocol": {
+    "type": "jmEncryptedApi",
+    "request": {
+      "vars": {
+        "time": "nowSec"
+      },
+      "headers": {
+        "Authorization": "Bearer",
+        "X-Requested-With": "{account.pkgName}",
+        "User-Agent": "{userAgent}",
+        "tokenparam": "{time},{account.jmVersion}",
+        "token": {
+          "algo": "md5_hex",
+          "input": "{time}{account.authKey}"
+        }
+      }
+    },
+    "response": {
+      "outer": {
+        "type": "json",
+        "dataField": "data"
+      },
+      "decrypt": {
+        "algo": "aes_ecb_pkcs7",
+        "base64": true,
+        "key": {
+          "derive": "md5_hex_utf8",
+          "input": "{time}{account.dataSecret}"
+        }
+      },
+      "stripJsonWrapper": true,
+      "decode": "json"
+    }
+  },
+
+  "search": {
+    "method": "json",
+    "httpMethod": "GET",
+    "path": "/search?search_query={keyword}&o={order}&page={page}",
+    "idSearch": {
+      "enabled": true,
+      "regex": "^jm(\\d+)$",
+      "idGroup": 1
+    },
+    "defaultVars": {
+      "order": "mr"
+    },
+    "resultPath": "content",
+    "itemMapping": {
+      "idPath": "id",
+      "titlePath": "name",
+      "subtitlePath": "author",
+      "coverTemplate": "{imageHost}/media/albums/{id}_3x4.jpg",
+      "descriptionPath": "description"
+    }
+  },
+
+  "detail": {
+    "method": "json",
+    "httpMethod": "GET",
+    "path": "/album?id={id}",
+    "mapping": {
+      "rootPath": "",
+      "titlePath": "name",
+      "descriptionPath": "description",
+      "coverTemplate": "{imageHost}/media/albums/{id}_3x4.jpg",
+      "authorPath": "author",
+      "tagsPath": "tags"
+    },
+    "chapters": {
+      "method": "fromDetail",
+      "sourcePath": "series",
+      "idPath": "id",
+      "titlePath": "name",
+      "orderPath": "sort",
+      "fallbackSingle": true
+    }
+  },
+
+  "reader": {
+    "method": "json",
+    "httpMethod": "GET",
+    "path": "/chapter?id={chapterId}",
+    "listPath": "images",
+    "urlTemplate": "{imageHost}/media/photos/{chapterId}/{imageName}",
+    "vars": {
+      "imageName": "{item}"
+    },
+    "headers": {
+      "Referer": "https://localhost/"
+    }
+  }
+}

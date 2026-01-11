@@ -1,0 +1,50 @@
+{
+    "api": "4",
+    "type": "manga",
+    "name": "nhentai",
+    "displayName": "nhentai",
+    "version": "1.0.6",
+    "baseURL": "https://nhentai.net",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0",
+    "search": {
+        "searchURL": "/search/?q={keyword}",
+        "pageParam": "&page={page}",
+        "resultList": "div.gallery",
+        "itemSelectors": {
+            "id": {
+                "selector": "a",
+                "attr": "href",
+                "regex": "/g/(\\d+)/"
+            },
+            "title": {
+                "selector": "div.caption",
+                "attr": "text"
+            },
+            "cover": {
+                "selector": "img",
+                "attr": "data-src",
+                "prefix": "https:"
+            }
+        }
+    },
+    "detail": {
+        "detailURL": "/g/{id}/",
+        "selectors": {
+            "title": "h1.title, h2.title",
+            "cover": {
+                "selector": "div#cover img",
+                "attr": "data-src",
+                "prefix": "https:"
+            },
+            "description": ".tag-container",
+            "tags": "span.name"
+        }
+    },
+    "reader": {
+        "imagesURL": "/g/{id}/1/",
+        "method": "script",
+        "scriptPattern": "window\\._gallery",
+        "jsonPath": "images.pages",
+        "urlTemplate": "https://i3.nhentai.net/galleries/{media_id}/{index}.{ext}"
+    }
+}

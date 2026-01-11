@@ -1,0 +1,66 @@
+{
+    "api": "4",
+    "type": "manga",
+    "name": "mh18",
+    "displayName": "18漫画",
+    "version": "1.0.0",
+    "baseURL": "https://18mh.org",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0",
+    "useWebview": true,
+
+    "search": {
+        "searchURL": "/s/{keyword}",
+        "pageParam": "?page={page}",
+        "resultList": ".pb-2",
+        "itemSelectors": {
+            "id": {
+                "selector": "a",
+                "attr": "href"
+            },
+            "title": {
+                "selector": "h3",
+                "attr": "text"
+            },
+            "cover": {
+                "selector": "img",
+                "attr": "src"
+            }
+        }
+    },
+    "detail": {
+        "detailURL": "{id}",
+        "selectors": {
+            "title": {
+                "selector": ".text-xl",
+                "attr": "text"
+            },
+            "cover": {
+                "selector": ".object-cover",
+                "attr": "src"
+            },
+            "description": {
+                "selector": "p.text-medium",
+                "attr": "text"
+            },
+            "tags": {
+                "selector": "div.py-1 a",
+                "attr": "text"
+            }
+        },
+        "chapters": {
+            "method": "selector",
+            "selector": "#mangachapters .chapteritem a",
+            "attr": "text",
+            "reverse": true
+        }
+    },
+    "reader": {
+        "imagesURL": "{chapterId}",
+        "method": "selector",
+        "selector": "#chapcontent img",
+        "attr": "data-src,src",
+        "headers": {
+            "Referer": "https://18mh.org"
+        }
+    }
+}

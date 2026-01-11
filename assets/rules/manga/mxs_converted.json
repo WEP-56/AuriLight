@@ -1,0 +1,79 @@
+{
+  "api": "4",
+  "type": "manga",
+  "name": "mxs",
+  "displayName": "漫小肆",
+  "version": "1.0.0",
+  "baseURL": "https://www.mxshm.top",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+  "search": {
+    "searchURL": "/search?keyword={keyword}",
+    "resultList": ".mh-item",
+    "itemSelectors": {
+      "id": {
+        "selector": "a[href^='/book/']",
+        "attr": "href",
+        "regex": "/book/(\\d+)"
+      },
+      "title": {
+        "selector": ".title a",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": "a[href^='/book/']",
+        "attr": "href",
+        "regex": "/book/(\\d+)",
+        "prefix": "https://www.mxshm.top/static/upload/book/",
+        "suffix": "/cover.jpg"
+      },
+      "description": {
+        "selector": ".chapter",
+        "attr": "text",
+        "clean": [
+          "更新",
+          "\\n"
+        ]
+      }
+    }
+  },
+  "detail": {
+    "detailURL": "/book/{id}",
+    "selectors": {
+      "title": {
+        "selector": ".info h1",
+        "attr": "text"
+      },
+      "description": {
+        "selector": ".info .content",
+        "attr": "text"
+      },
+      "tags": {
+        "selector": ".info .tip a[href*='tag=']",
+        "attr": "text"
+      }
+    },
+    "chapters": {
+      "method": "selector",
+      "itemSelector": "#detail-list-select li a",
+      "id": {
+        "attr": "href",
+        "regex": "/chapter/(\\d+)"
+      },
+      "title": {
+        "attr": "text"
+      }
+    }
+  },
+  "reader": {
+    "imagesURL": "/chapter/{chapterId}",
+    "method": "selector",
+    "selector": "img.lazy",
+    "attr": "data-original",
+    "postProcess": [
+      {
+        "type": "replaceDomain",
+        "to": "www.mxshm.top"
+      }
+    ]
+  }
+}

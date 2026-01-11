@@ -1,0 +1,45 @@
+{
+    "api": "4",
+    "type": "manga",
+    "name": "ehentai",
+    "displayName": "ehentai",
+    "version": "1.1.8",
+    "baseURL": "https://git.nyne.dev/nyne/venera-configs/raw/branch/main/ehentai.js",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0",
+    "search": {
+        "searchURL": "/search?q={keyword}",
+        "pageParam": "&page={page}",
+        "resultList": ".manga-item, .comic-item, .book-item",
+        "itemSelectors": {
+            "id": {
+                "selector": "a",
+                "attr": "href",
+                "regex": "/(\\d+)"
+            },
+            "title": {
+                "selector": ".title, .name",
+                "attr": "text"
+            },
+            "cover": {
+                "selector": "img",
+                "attr": "src"
+            }
+        }
+    },
+    "reader": {
+        "imagesURL": "/chapter/{id}/images",
+        "method": "selector",
+        "selector": "img",
+        "attr": "src"
+    },
+    "login": {
+        "enabled": true,
+        "loginURL": "/login",
+        "method": "POST",
+        "headers": {
+            "content-type": "application/x-www-form-urlencoded"
+        },
+        "bodyTemplate": "username={account}&password={password}",
+        "successCheck": "登錄成功"
+    }
+}

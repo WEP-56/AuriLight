@@ -1,0 +1,89 @@
+{
+  "api": "4",
+  "type": "manga",
+  "name": "picacg",
+  "displayName": "Picacg",
+  "version": "1.0.5",
+  "useWebview": true,
+  "baseURL": "https://picaapi.picacomic.com",
+  "userAgent": "okhttp/3.8.1",
+  "account": {
+    "type": "picacg",
+    "ipListUrl": "http://68.183.234.72/",
+    "baseApiUrl": "https://picaapi.picacomic.com",
+    "apiBaseCandidates": [
+      "https://bika-api.jpacg.cc",
+      "https://bika2-api.jpacg.cc",
+      "https://post-api.wikawika.xyz",
+      "https://picaapi.picacomic.com"
+    ],
+    "proxyOriginHost": "picaapi.picacomic.com",
+    "proxyDomains": [
+      "bika-api.jpacg.cc",
+      "bika2-api.jpacg.cc"
+    ],
+    "loginPath": "auth/sign-in",
+    "apiKey": "C69BAF41DA5ABD1FFEDC6D2FEA56B",
+    "hmacKey": "~d}$Q7$eIni=V)9\\RK/P.RM4;9[7|@/CA}b~OW!3?EV`:<>M7pddUBL5n|0/*Cn",
+    "appChannel": "3",
+    "imageQuality": "original",
+    "appVersion": "2.2.1.3.3.4",
+    "appPlatform": "android",
+    "appBuildVersion": "45",
+    "accept": "application/vnd.picacomic.com.v1+json",
+    "apiVersion": "v1.4.1",
+    "userAgent": "okhttp/3.8.1"
+  },
+  "search": {
+    "method": "json",
+    "baseApiUrl": "https://picaapi.picacomic.com",
+    "httpMethod": "POST",
+    "path": "/comics/advanced-search?page={page}",
+    "bodyTemplate": "{\"keyword\":\"{keyword}\",\"sort\":\"dd\"}",
+    "resultPath": "data.comics.docs",
+    "itemMapping": {
+      "idPath": "_id",
+      "titlePath": "title",
+      "subtitlePath": "author",
+      "fileServerPath": "thumb.fileServer",
+      "pathPath": "thumb.path",
+      "coverTemplate": "{fileServer}/static/{path}",
+      "descriptionPath": "likesCount"
+    }
+  },
+  "detail": {
+    "method": "json",
+    "baseApiUrl": "https://picaapi.picacomic.com",
+    "httpMethod": "GET",
+    "path": "/comics/{id}",
+    "mapping": {
+      "rootPath": "data.comic",
+      "titlePath": "title",
+      "descriptionPath": "description",
+      "fileServerPath": "thumb.fileServer",
+      "pathPath": "thumb.path",
+      "coverTemplate": "{fileServer}/static/{path}",
+      "authorPath": "author",
+      "categoriesPath": "categories",
+      "tagsPath": "tags"
+    },
+    "chapters": {
+      "method": "jsonPaged",
+      "path": "/comics/{id}/eps?page={page}",
+      "listPath": "data.eps.docs",
+      "pagesPath": "data.eps.pages",
+      "orderPath": "order",
+      "titlePath": "title"
+    }
+  },
+  "reader": {
+    "method": "apiJsonPaged",
+    "baseApiUrl": "https://picaapi.picacomic.com",
+    "path": "/comics/{comicId}/order/{chapterId}/pages?page={page}",
+    "listPath": "data.pages.docs",
+    "pagesPath": "data.pages.pages",
+    "fileServerPath": "media.fileServer",
+    "pathPath": "media.path",
+    "urlTemplate": "{fileServer}/static/{path}"
+  }
+}
