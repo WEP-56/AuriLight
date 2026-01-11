@@ -1,18 +1,18 @@
+⚠由于项目还在初期阶段，暂不提供release，请您自行编译⚠
 <p align="center">
-  <img src="example/logo.jpg" alt="AuriLight Logo" width="200"/>
+  <img src="example/logo.jpg" alt="AuriLight Logo" width="400"/>
 </p>
 
 <h1 align="center">AuriLight</h1>
 
 <p align="center">
-  <b>统一的动漫和漫画观看平台</b><br>
-  融合 Kazumi 和 Venera 的优秀特性，打造纯净的观看体验
+  <b>统一的动漫，漫画，直播观看平台</b><br>
+  尽力打造纯净的观看体验
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Flutter-3.10+-blue.svg" alt="Flutter"/>
   <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20Android-green.svg" alt="Platform"/>
-  <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License"/>
 </p>
 
 ---
@@ -41,11 +41,12 @@
 - 锁定控制、长按加速、截图功能
 
 ### 📚 漫画模块
-- 支持 JSON 规则引擎
+- 全新 JSON 规则引擎
 - JM 图片解密（自动还原打乱的图片）
 - 双击缩放、左右翻页/上下滚动模式
 - 键盘/滚轮翻页支持
 - 图片预加载优化
+- 简单网页（以无需登陆为基准）可以查看文档自行制作，放置在assest/rules/manga
 
 ### ⭐ 收藏系统
 - 分类收藏管理（漫画、动漫、直播、小说）
@@ -114,7 +115,7 @@ git clone https://github.com/your-username/AuriLight.git
 cd AuriLight
 
 # 安装依赖
-# 部分库使用了自制或他人制作的第三方库，整合后提供地址，目前暂无。
+# 部分库使用了自制或他人制作的第三方库。
 flutter pub get
 
 # 生成代码
@@ -149,7 +150,8 @@ flutter build apk --release
 - [ ] 数据导入导出
 - [ ] 更多规则源支持
 - [ ] webdav用户记录云端保存
-- [ ] 聚合形搜索
+- [ ] 聚合搜索
+- [ ] 直播收藏
 ---
 
 ## 🙏 致谢
@@ -158,13 +160,15 @@ flutter build apk --release
 - [Kazumi](https://github.com/Predidit/Kazumi) - 动漫规则系统
 - [Venera](https://github.com/venera-app/venera) - 漫画规则系统和阅读器
 
----
 
-## 📄 许可证
+第三方依赖仓库（替换pubspec.yaml对应的依赖），这些自定义的库是AuriLight网络层的基石：
+- https://github.com/Predidit/flutter-webview-windows  
+- https://github.com/Predidit/linux_webview_window
+- https://github.com/wgh136/flutter_qjs
+- https://github.com/wgh136/photo_view
 
-本项目基于 [MIT License](LICENSE) 开源。
 
----
+
 
 <p align="center">
   <b>如果觉得有用，请给个 ⭐ Star 支持一下！</b>
