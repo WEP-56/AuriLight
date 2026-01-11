@@ -1,141 +1,171 @@
-# AuriLight
+<p align="center">
+  <img src="example/logo.jpg" alt="AuriLight Logo" width="200"/>
+</p>
 
-统一的动漫和漫画观看平台，融合了 Kazumi 和 Venera 的优秀特性。
+<h1 align="center">AuriLight</h1>
 
-## 项目特性
+<p align="center">
+  <b>统一的动漫和漫画观看平台</b><br>
+  融合 Kazumi 和 Venera 的优秀特性，打造纯净的观看体验
+</p>
 
-### 🎯 核心功能
-- **统一规则系统**：支持 Kazumi 的 JSON 规则和 Venera 的 JS 规则
-- **热插拔源管理**：侧边栏支持拖拽排序、动态增删规则源
-- **分类收藏系统**：按类型分组管理动漫和漫画收藏
-- **纯净直播观看**：提供四个平台的纯净直播观看，支持弹幕功能
-- （暂未实现）**本地下载管理**：完整的漫画下载和本地管理功能
-- （暂未实现）**历史记录**：保留 Kazumi 的集数级进度和 Venera 的页面级进度
+<p align="center">
+  <img src="https://img.shields.io/badge/Flutter-3.10+-blue.svg" alt="Flutter"/>
+  <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20Android-green.svg" alt="Platform"/>
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License"/>
+</p>
 
-### 🏗️ 技术架构
-- **主框架**：MobX + Hive + Flutter Modular
-- **规则引擎**：统一解析器支持双格式规则文件
-- **状态管理**：MobX 响应式状态管理
-- **本地存储**：Hive 高性能本地数据库
+---
 
-## 项目结构
+## 📸 截图预览
+
+<p align="center">
+  <img src="example/example1.png" width="30%" />
+  <img src="example/example2.png" width="30%" />
+  <img src="example/example3.png" width="30%" />
+</p>
+<p align="center">
+  <img src="example/example4.png" width="30%" />
+  <img src="example/example5.png" width="30%" />
+  <img src="example/example6.png" width="30%" />
+</p>
+
+---
+
+## ✨ 功能特性
+
+### 🎬 动漫模块
+- 多源聚合搜索，支持 Kazumi JSON 规则
+- 多线路播放，自动切换备用线路
+- 完整的播放器控制（全屏、倍速、手势控制）
+- 锁定控制、长按加速、截图功能
+
+### 📚 漫画模块
+- 支持 JSON 规则引擎
+- JM 图片解密（自动还原打乱的图片）
+- 双击缩放、左右翻页/上下滚动模式
+- 键盘/滚轮翻页支持
+- 图片预加载优化
+
+### ⭐ 收藏系统
+- 分类收藏管理（漫画、动漫、直播、小说）
+- 点击收藏直接跳转详情页
+- Hive 本地存储，数据持久化
+
+### 📺 直播模块
+- 支持多平台纯净直播观看
+- 弹幕功能支持
+
+### 🛠️ 其他功能
+- 侧边栏规则源管理
+- 缓存清理
+- 桌面端全屏支持
+
+---
+
+## 🏗️ 技术架构
+
+| 模块 | 技术 |
+|------|------|
+| 状态管理 | MobX |
+| 本地存储 | Hive |
+| 视频播放 | media_kit |
+| 图片查看 | photo_view |
+| 网络请求 | Dio + WebView 渐进式混合 |
+| 桌面窗口 | window_manager |
+
+---
+
+## 📦 项目结构
 
 ```
-KazuVera2D/
-├── lib/
-│   ├── core/                    # 核心功能
-│   │   ├── models/             # 数据模型
-│   │   │   ├── unified_rule.dart    # 统一规则模型
-│   │   │   └── favorite.dart        # 收藏模型
-│   │   ├── rule_engine/        # 规则引擎
-│   │   │   ├── rule_parser.dart     # 规则解析器
-│   │   │   └── rule_manager.dart    # 规则管理器
-│   │   ├── storage/            # 存储管理
-│   │   └── utils/              # 工具类
-│   ├── features/               # 功能模块
-│   │   ├── home/              # 主页模块
-│   │   ├── anime/             # 动漫模块
-│   │   ├── manga/             # 漫画模块
-│   │   ├── favorites/         # 收藏模块
-│   │   └── settings/          # 设置模块
-│   ├── app_module.dart        # 应用模块
-│   ├── app_widget.dart        # 应用根组件
-│   └── main.dart              # 应用入口
-├── rules/                     # 规则文件目录
-│   ├── anime/                 # 动漫规则 (JSON)
-│   │   └── *.json
-│   └── manga/                 # 漫画规则 (JS)
-│       └── *.js
-└── assets/                    # 资源文件
+lib/
+├── core/                    # 核心服务
+│   ├── models/             # 数据模型
+│   ├── services/           # 业务服务
+│   │   ├── manga_rule_manager.dart
+│   │   ├── manga_image_provider.dart
+│   │   ├── jm_image_decoder.dart
+│   │   ├── favorite_service.dart
+│   │   └── cache_service.dart
+│   └── utils/              # 工具类
+├── features/               # 功能模块
+│   ├── home/              # 主页
+│   ├── anime/             # 动漫
+│   ├── manga/             # 漫画
+│   ├── favorite/          # 收藏
+│   └── live/              # 直播
+└── main.dart              # 入口
 ```
 
-## 规则系统
+---
 
-### 统一规则结构
-项目实现了统一的规则系统，支持两种格式：
+## 🚀 快速开始
 
-#### 动漫规则 (JSON - Kazumi 格式)
-```json
-{
-  "name": "规则名称",
-  "version": "1.0.0",
-  "baseURL": "https://example.com",
-  "searchURL": "https://example.com/search?q=@keyword",
-  "searchList": "//div[@class='anime-list']/div",
-  "searchName": ".//h3/a",
-  "searchResult": ".//h3/a/@href"
-}
+### 环境要求
+- Flutter SDK >= 3.10.0
+- Dart SDK >= 3.0.0
+
+### 安装运行
+
+```bash
+# 克隆项目
+git clone https://github.com/your-username/AuriLight.git
+cd AuriLight
+
+# 安装依赖
+# 部分库使用了自制或他人制作的第三方库，整合后提供地址，目前暂无。
+flutter pub get
+
+# 生成代码
+flutter pub run build_runner build --delete-conflicting-outputs
+
+# 运行
+flutter run
 ```
 
-#### 漫画规则 (JS - Venera 格式)
-```javascript
-class ExampleManga extends ComicSource {
-    name = "规则名称"
-    key = "example"
-    version = "1.0.0"
-    
-    search = {
-        load: async (keyword, page) => {
-            // 搜索实现
-        }
-    }
-}
+### 构建发布
+
+```bash
+# Windows
+flutter build windows --release
+
+# Android
+flutter build apk --release
 ```
 
-### 规则管理
-- **自动扫描**：启动时自动扫描 `/rules` 目录
-- **热重载**：支持运行时添加/删除规则文件
-- **版本管理**：自动检测规则版本更新
-- **启用控制**：可单独启用/禁用规则源
+---
 
-## 开发计划
+## 📋 开发计划
 
-### Phase 1: 基础框架 ✅
-- [x] 项目结构搭建
-- [x] 统一规则系统
-- [x] 侧边栏导航
-- [x] 规则管理器
-
-### Phase 2: 动漫模块 🚧
-- [x] Kazumi 规则解析引擎
 - [x] 动漫搜索和播放
-- [ ] 历史记录管理
-- [x] 多线路支持
-
-### Phase 3: 漫画模块 🚧
-- [x] json解析应用引擎制作
 - [x] 漫画搜索和阅读
-- [ ] 下载管理
-- [ ] 本地漫画管理
-
-### Phase 4: 高级功能 📋
+- [x] JM 图片解密
 - [x] 收藏系统
-- [ ] 账户登录支持
-- [ ] 设置和配置
+- [x] 播放器优化（全屏、鼠标手势、倍速）
+- [x] 阅读器优化（双击缩放、滚动模式）
+- [ ] 历史记录
+- [ ] 下载管理
 - [ ] 数据导入导出
+- [ ] 更多规则源支持
+- [ ] webdav用户记录云端保存
+- [ ] 聚合形搜索
+---
 
-## 运行项目
+## 🙏 致谢
 
-1. 确保已安装 Flutter SDK (>=3.10.0)
-2. 克隆项目并安装依赖：
-   ```bash
-   git clone <repository>
-   cd KazuVera2D
-   flutter pub get
-   ```
-3. 生成代码：
-   ```bash
-   flutter packages pub run build_runner build
-   ```
-4. 运行项目：
-   ```bash
-   flutter run
-   ```
+本项目参考了以下优秀开源项目：
+- [Kazumi](https://github.com/Predidit/Kazumi) - 动漫规则系统
+- [Venera](https://github.com/venera-app/venera) - 漫画规则系统和阅读器
 
-## 贡献指南
+---
 
-欢迎贡献代码和规则文件！请查看 [CONTRIBUTING.md](CONTRIBUTING.md) 了解详细信息。
+## 📄 许可证
 
-## 许可证
+本项目基于 [MIT License](LICENSE) 开源。
 
-本项目基于 MIT 许可证开源。详见 [LICENSE](LICENSE) 文件。
+---
+
+<p align="center">
+  <b>如果觉得有用，请给个 ⭐ Star 支持一下！</b>
+</p>
